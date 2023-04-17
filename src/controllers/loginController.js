@@ -1,13 +1,13 @@
 const loginService = require('../services/loginService');
 
-const createUser = async (req, res) => {
-  const newUser = await loginService.createUser(req.body);
-  if (newUser.message) {
-    return res.status(400).json({ message: newUser.message });
+const loginUser = async (req, res) => {
+  const userLogin = await loginService.loginUser(req.body);
+  if (userLogin.message) {
+    return res.status(400).json({ message: userLogin.message });
   }
-  return res.status(200).json({ token: newUser });
+  return res.status(200).json({ token: userLogin });
 };
 
 module.exports = {
-  createUser,
+  loginUser,
 };

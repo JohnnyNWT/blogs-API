@@ -1,7 +1,7 @@
 const { User } = require('../models');
 const { generateToken } = require('../utils/auth');
 
-const createUser = async ({ email, password }) => {
+const loginUser = async ({ email, password }) => {
   if (!email || !password) {
     return { message: 'Some required fields are missing' };
   }
@@ -14,5 +14,5 @@ const createUser = async ({ email, password }) => {
 };
 
 module.exports = {
-  createUser,
+  loginUser,
 };
