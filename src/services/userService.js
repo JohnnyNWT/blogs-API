@@ -23,6 +23,22 @@ const createUser = async ({ displayName, email, password, image }) => {
   return token;
 };
 
+const getUsers = async () => {
+  const getAll = await User.findAll({ attributes: { exclude: ['password'] } });
+  const result = getAll.map(({ dataValues }) => ({ ...dataValues }));
+  return result;
+};
+
+const getUserById = async (id) => {
+  const getById = await User.findOne({ where: { id }, attributes: { exclude: ['password'] } });
+  if (!getById) {
+    return { message: 'User does not exist' };
+  }
+  return getById.dataValues;
+};
+
 module.exports = {
   createUser,
+  getUsers,
+  getUserById,
 };
